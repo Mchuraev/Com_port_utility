@@ -28,7 +28,7 @@ def com_uart(port, baudrate, file_name, out) -> None:
                 timest = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                 writers = f'{timest}   {strg}\n'
                 f.write(writers)
-                if out:
+                if out == 'on':
                     print(f'{timest}   {strg}')
             try:
                 ser.close()
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     port = args.port if args.port is not None else "/dev/ttyUSB0"
     speed = args.speed if args.speed is not None else 115200
     log = args.log if args.log is not None else f'uart_log_{time_log}.log'
-    out = args.output if args.output is not None else True
+    out = args.output if args.output is not None else 'on'
 
     flag = mp.Value('i', 1)
     flag2 = mp.Value('i', 1)
